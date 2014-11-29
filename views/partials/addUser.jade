@@ -1,0 +1,53 @@
+//
+   Created by chnadrakantpaliwal on 11/29/14.
+
+div.col-md-6
+   form(role="form" name='usercreateform' ng-controller='addUserController' ng-submit='submitForm(usercreateform.$valid)' novalidate)
+      .form-group(ng-class="{ 'has-error' : usercreateform.email.$invalid && !usercreateform.email.$pristine }")
+         label(for="email") Email address
+         input.form-control(type="email", placeholder="Enter email" name="email" ng-model="user.email" required)
+         p.help-block(ng-show="usercreateform.email.$invalid && !usercreateform.email.$pristine") Enter a valid email.
+      .form-gruop
+         label(for="password") Set a password:
+         input.form-control(type="password", name="passwrod", ng-model='user.password', ng-required="" ps-check='confirmpassword')
+      .form-gruop
+         label(for="confirmpassword") Confirm the password:
+         input.form-control(type="password", name="confirmpassword", ng-required="", pw-check="password")
+         p.help-block(ng-show="usercreateform.pw2.$error.pwmatch") Passwords don"t match.
+
+      .form-group(ng-class="{ 'has-error' : usercreateform.first_name.$invalid && !usercreateform.first_name.$pristine }")
+         label(for="first_name") First Name:
+         input.form-control(type="text", placeholder="Enter first name" name="first_name" ng-model="user.first_name" required)
+         p.help-block(ng-show="usercreateform.first_name.$invalid && !usercreateform.first_name.$pristine") Enter a valid Name
+      .form-group(ng-class="{ 'has-error' : usercreateform.last_name.$invalid && !usercreateform.last_name.$pristine }")
+         label(for="last_name") Last Name:
+         input.form-control(type="text", placeholder="Enter last Name" name="last_name" ng-model="user.last_name" required)
+         p.help-block(ng-show="usercreateform.last_name.$invalid && !usercreateform.last_name.$pristine") Enter a valid last name.
+
+      .form-group(ng-class="{ 'has-error' : usercreateform.age.$invalid && !usercreateform.age.$pristine }")
+         label(for="age") Age:
+         input.form-control(type="number", placeholder="Enter Age" name="age" ng-model="user.age" required)
+         p.help-block(ng-show="usercreateform.age.$invalid && !usercreateform.age.$pristine") Enter a valid age.
+
+      .form-group(ng-class="{ 'has-error' : usercreateform.gender.$invalid && !usercreateform.gender.$pristine }")
+         label(for='gender') Gender:
+         select.form-control(name='gender' ng-model='user.sex' required placeholder='Select Gender')
+            option(selected value='') Select Gender
+            option(value='male') Male
+            option(value='Female') Female
+         p.help-block(ng-show="usercreateform.gender.$invalid && !usercreateform.gender.$pristine") Please select Gender.
+
+      .form-group(ng-class="{ 'has-error' : usercreateform.permission_id.$invalid && !usercreateform.permission_id.$pristine }")
+         label(for='permission_id') Permission:
+         select.form-control(name='permission_id' ng-model='user.permission_id' required placeholder='Select User Permission')
+            option(selected value='') Select Permission
+            option(ng-repeat="role in roles" value='{{role.name}}')
+               | {{role.name}}
+         div
+             | {{role_selected}}
+         p.help-block(ng-show="usercreateform.permission_id.$invalid && !usercreateform.permission_id.$pristine") Please select Permission.
+
+      .form-group
+         button.btn.btn-primary(type="submit") Submit
+         | &nbsp; &nbsp;
+         button.btn.btn-primary(type="button") Reset

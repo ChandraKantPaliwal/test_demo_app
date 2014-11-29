@@ -1,0 +1,36 @@
+div.col-md-2(ng-controller='showUserController')
+    label
+        | Filter
+    .form-group
+        input.form-control(type='text' mg-model='query.first_name')
+.row
+    .col-md-8
+        table#example.table.table-striped.table-condensed.display
+            thead
+                tr
+                th(style='text-align:center;') First name
+                th(style='text-align:center;') Last name
+                th(style='text-align:center;') Email
+                th(style='text-align:center;') Age
+                th(style='text-align:center;') Sex
+                th(colspan='2' style='text-align:center;') Action
+            tfoot
+                tr
+                    th(style='text-align:center;') First Name
+                    th(style='text-align:center;') Last Name
+                    th(style='text-align:center;') Email
+                    th(style='text-align:center;') Age
+                    th(style='text-align:center;') Sex
+                    th(colspan='2' style='text-align:center;') Action
+
+            tbody
+                tr(ng-repeat="user in users | filter:query.first_name ")
+                    td(style='text-align:center;') {{ user.first_name }}
+                    td(style='text-align:center;') {{ user.last_name }}
+                    td(style='text-align:center;') {{ user.email }}
+                    td(style='text-align:center;') {{ user.age }}
+                    td(style='text-align:center;') {{ user.sex }}
+                    td(style='text-align:center;')
+                        a.btn.btn-primary(ng-href="#/editUser/{{user._id}}") Edit
+                    td(style='text-align:center;')
+                        button.btn.btn-warning(ng-click="removeUser(user._id)") Delete
